@@ -1,0 +1,23 @@
+# --- Core Orchestration ---
+langchain>=0.3.0
+langchain-core>=0.3.0
+langgraph>=0.2.0
+
+# --- Dedicated AI Integrations (The 0.3 Updates) ---
+langchain-ollama>=0.2.0
+langchain-huggingface>=0.1.0
+
+# --- General Community Integrations (For FAISS & Loaders) ---
+langchain-community>=0.3.0
+
+# --- Vector Database & Local Embedding Engine ---
+faiss-cpu==1.8.0.post1
+sentence-transformers>=3.0.0
+
+# --- Tracking & Evaluation ---
+mlflow>=2.12.1
+pandas>=2.2.2
+
+# --- Application UI & Utilities ---
+streamlit>=1.33.0
+python-dotenv>=1.0.1
