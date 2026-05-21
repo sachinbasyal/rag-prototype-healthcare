@@ -52,6 +52,25 @@ def grade_documents_node(state):
             
     return {"documents": filtered_docs, "question": question}
 
+def rewrite_query_node(state):
+    """If documents are irrelevant, the LLM rewrites the query to try again."""
+    print("---NODE: REWRITING QUERY---")
+    question = state["question"]
+    
+    prompt = PromptTemplate(
+        template="""You are an expert at optimizing search queries for a medical database. 
+        Look at the user's original question and rewrite it to use better keywords for a vector search.
+        Original Question: {question}
+        Optimized Query:""",
+        input_variables=["question"],
+    )
+    
+    rewrite_chain = prompt | local_llm | StrOutputParser()
+    optimized_question = rewrite_chain.invoke({"question": question})
+    
+    # We update the state with the NEW question and increment our retry counter
+    return {"question": optimized_question, "retries": state.get("retries", 0) + 1}
+
 def generate_node(state):
     """Generates the final answer using the filtered documents."""
     print("---NODE: GENERATING ANSWER---")
