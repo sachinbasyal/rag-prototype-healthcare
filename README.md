@@ -10,7 +10,7 @@ This repository contains an end-to-end **Corrective Retrieval-Augmented Generati
 
 To simulate the strict data privacy requirements (HIPAA) of enterprise healthcare systems and financial institutions, this pipeline is engineered to run **100% locally on CPU**. No data is ever sent to external APIs like OpenAI. 
 
-Instead of a traditional, linear pipeline, this project utilizes a state-machine architecture to evaluate its own retrieved context and intercept hallucinations before they reach the user, guaranteeing the deterministic reliability required in regulated environments.
+Instead of a traditional, linear pipeline, this project utilizes a state-machine architecture to evaluate its own retrieved context and intercept hallucinations before they reach the user, by introducing multiple guardrails designed to detect unsupported responses and safely abstain when the available evidence is insufficient.
 
 ## Core Technology Stack
 This project leverages the modern, modularized AI ecosystem:
